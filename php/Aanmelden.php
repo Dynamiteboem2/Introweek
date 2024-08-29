@@ -25,17 +25,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':geboortedatum', $Geboortedatum);
     
 
-            $stmt->execute();
 
-            echo "<div class='success'><p class='successmessage'>Correct aangemeld! Je wordt binnen enkele seconden doorgestuurd naar de homepage.</p></div>";
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
-    } else {
-        echo "Error: Required form fields are missing.";
-    }
+    
+    
+    $stmt->execute();
+    
+    echo "<div class='success'><p class='successmessage'>Correct aangemeld! Je wordt binnen enkele seconden doorgestuurd naar de homepage.</p></div>";
+
+    // Voeg een JavaScript redirect toe om automatisch naar de homepage te gaan
+    echo "<script type='text/javascript'>
+        setTimeout(function() {
+            window.location.href = '../Html/index.html'; // Verander dit naar de URL van je homepage
+        }, 3000); // 3000 milliseconden = 3 seconden
+    </script>";
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
 }
-?>
+} else {
+echo "<div class='error'><p class='errormessage'>Error: Required form fields are missing.</p></div>";
+}
+}
+    ?>
+    
+
 <style>
 .success {
     background-color: #d4edda;
