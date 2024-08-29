@@ -13,7 +13,16 @@
      height: 100%;
     } 
    </style>
-
+   
+    <div class="banner">
+      <nav>
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="login.html">Login</a></li>
+              <li><a href="Aanmeld.html">Registreren</a></li>
+          </ul>
+      </nav>
+  </div>
            <main>
    <section id="banner" class="jc-center ai-center">
        <div class="title">
@@ -22,24 +31,16 @@
        <div class="form-container">
         <div class="meldaan-form">
             <form id="meldaan-form" action="../php/Aanmelden.php" method="post">
-                <label for="burgerservicenummer">Burgerservicenummer</label>
-                <input type="text" name="burgerservicenummer" placeholder="Burgerservicenummer" id="burgerservicenummer" minlength="9" maxlength="9" required>
-    
+               
+                <label for="Naam">Naam</label>
+                <input type="text" name="Naam" placeholder="Naam" id="Naam" maxlength="50" required>
+
                 <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Email" id="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|nl|org|net|edu|gov|uk|us)$" title="Must end with a valid domain such as .com, .nl, .org, .net, .edu, .gov, .uk, or .us" maxlength="30" required>
-    
-                <label for="roepnaam">Roepnaam</label>
-                <input type="text" name="roepnaam" placeholder="Roepnaam" id="roepnaam" maxlength="20" required>
-    
-                <label for="achternaam">Achternaam</label>
-                <input type="text" name="achternaam" placeholder="Achternaam" id="achternaam" maxlength="20" required>
+                <input type="email" name="email" placeholder="Email" id="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|nl|org|net|edu|gov|uk|us)$" title="Must end with a valid domain such as .com, .nl, .org, .net, .edu, .gov, .uk, or .us" maxlength="30" required>
     
                 <label for="geboortedatum">Geboortedatum</label>
                 <input type="date" name="geboortedatum" placeholder="Geboortedatum" id="geboortedatum" required>
-    
-                <label for="telefoonnummer">Telefoonnummer</label>
-                <input type="number" name="telefoonnummer" placeholder="Telefoonnummer" id="telefoonnummer" minlength="9" maxlength="15" required>
-    
+
                 <button type="submit">Aanmelden</button>
             </form>
         </div>
