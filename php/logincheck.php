@@ -43,7 +43,7 @@ if ($stmt->fetch()) {
         $_SESSION['loggedin'] = true;
         $_SESSION['naam'] = $stored_naam;
 
-        header("Location: contactresults.php");
+        header("Location: aanmelden_result.php");
         exit; // Stop script execution after redirection
     } else {
         echo "Invalid username or password";
