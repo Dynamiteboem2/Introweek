@@ -45,30 +45,41 @@
             width: 100%;
         }
         input[type="submit"]:hover {
-            background-color: #1d4a7c;;
+            background-color: #154a68; /* Slightly darker color on hover */
         }
         .flex-container {
             display: flex;
             justify-content: space-between; /* Dit zorgt ervoor dat de elementen verdeeld worden over de beschikbare ruimte */
         }
-
         .jc-flex-end {
             margin-left: auto; /* Dit zorgt ervoor dat het element aan het einde van de flex-container wordt geplaatst */
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <form action="login_check.php" method="post">
+    <form action="logincheck.php" method="post">
         <h1>Login</h1>
+        <?php
+        session_start();
+        if (isset($_SESSION['error'])) {
+            echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
+            unset($_SESSION['error']);
+        }
+        ?>
         <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required>
+        <input type="text" name="naam" id="naam" required>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" required>
         <input type="submit" value="Login">
         <div class="flex-container">
-                <a href="../html/index.html">Back</a>
-                <a href="Acountmaken.php" class="jc-flex-end">Account Maken</a>
-            </div>
+            <a href="../html/index.html">Back</a>
+            <a href="Acountmaken.php" class="jc-flex-end">Account Maken</a>
+        </div>
     </form>
 </body>
 </html>
