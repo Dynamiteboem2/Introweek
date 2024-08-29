@@ -1,15 +1,13 @@
 <?php
  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle registration form submission
-    $Burgerservicenummer = $_POST["burgerservicenummer"];
     $Email = $_POST["email"];
-    $Roepnaam = $_POST["roepnaam"];
-    $Achternaam = $_POST["achternaam"];
+    $Naam = $_POST["naam"];
     $Geboortedatum = $_POST["geboortedatum"];
-    $Telefoonnummer = $_POST["telefoonnummer"];
+ 
     
     // Perform database insertion (ensure you have a database connection)
-    $dsn = "mysql:host=localhost;dbname=opleidingdb";
+    $dsn = "mysql:host=localhost;dbname=introweek_lj2";
     $DBusername = "root";
     $DBpassword = '';
     $emailDupe = false;
@@ -19,15 +17,12 @@
         $pdo = new PDO($dsn, $DBusername, $DBpassword);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "INSERT INTO Aanmelden (burgerservicenummer, email, roepnaam, achternaam, geboortedatum, telefoonnummer) 
-                VALUES (:burgerservicenummer, :email, :roepnaam, :achternaam, :geboortedatum, :telefoonnummer)";
+        $sql = "INSERT INTO Aanmelden (email, naam, geboortedatum) 
+                VALUES (:email, :naam, :geboortedatum ,)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':burgerservicenummer', $Burgerservicenummer);
         $stmt->bindParam(':email', $Email);
-        $stmt->bindParam(':roepnaam', $Roepnaam);
-        $stmt->bindParam(':achternaam', $Achternaam);
+        $stmt->bindParam(':naam', $Naam);
         $stmt->bindParam(':geboortedatum', $Geboortedatum);
-        $stmt->bindParam(':telefoonnummer', $Telefoonnummer);
         
         $stmt->execute();
 

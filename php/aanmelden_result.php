@@ -79,13 +79,18 @@ input[type="submit"] {
 
 <h1>Aanmeldingen</h1>
 <?php
-include 'config.php';
+
+$dsn = "mysql:host=localhost;dbname=introweek_lj2";
+$DBusername = "root";
+$DBpassword = '';
+$emailDupe = false;
+$userDupe = false;
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$stmt = $conn->prepare("SELECT burgerservicenummer, Email, roepnaam, achternaam, geboortedatum, telefoonnummer FROM aanmelden");
+$stmt = $conn->prepare("SELECT Naam, Email, Geboortedatum FROM aanmelden");
 
 if (!$stmt) {
     echo "Prepare failed: " . $conn->error;
@@ -95,28 +100,23 @@ if (!$stmt->execute()) {
     echo "Execute failed: " . $stmt->error;
 }
 
-$stmt->bind_result($burgerservicenummer, $Email, $roepnaam, $achternaam, $geboortedatum, $telefoonnnummer);
+$stmt->bind_result($Naam, $Email, $Geboortedatums);
 
 echo "<table><tr>
-<th>Burgerservicenummer</th>
+<th>Naam</th>
 <th>Email</th>
-<th>Roepnaam</th>
-<th>Achternaam</th>
 <th>Geboortedatum</th>
-<th>Telefoonnummer</th>
-<th>Verwijderen</th>
+
 </tr>";
 while ($stmt->fetch()) {
-    echo "<tr><td>" . $burgerservicenummer . "</td><td>" . $Email . "</td><td>" . $roepnaam . "</td><td>" . $achternaam . "</td><td>" . $geboortedatum . "</td><td>" . $telefoonnnummer . "</td><td><a href='delete_aanmelding.php?burgerservicenummer=" . $burgerservicenummer . "'>Verwijder</a></td></tr>";
+    echo "<tr><td>" . $Naam . "</td><td>" . $Email . "</td><td>" . $Geboortedatum . "</td></tr>";
 }
 echo "</table>";
 
 $stmt->close();
 $conn->close();
 ?>
-<a href="../php/faq-approve.php">FAQ resultaten</a>
-<a href="../php/contactresults.php">Contact resultaten</a>
-<a href="./Admin.php">Users Admin</a>
+
 
 <?php
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
